@@ -11,17 +11,31 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnReset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_button_shape"
+        android:text="Сброс"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFetch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnFetch"
+        app:layout_constraintTop_toTopOf="@+id/btnFetch" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnFetch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/background_button_shape"
         android:text="Получить данные"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnReset"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -51,7 +65,7 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/blue_gradient_round_corners"
         android:padding="5pt"
-        android:text="Маршрут на %s дней"
+        android:text="Маршрут не определён"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -269,6 +283,7 @@
                     app:layout_constraintStart_toEndOf="@+id/tvEnergyAmount"
                     app:layout_constraintTop_toBottomOf="@+id/ivTemp"
                     app:srcCompat="@drawable/carengine" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -302,7 +317,7 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView10"
+                    app:layout_constraintEnd_toStartOf="@+id/tvRemainingPlants"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9"
@@ -313,14 +328,14 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView11"
+                    app:layout_constraintEnd_toStartOf="@+id/tvRemainingFuel"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintStart_toEndOf="@+id/tvRemainingPlants"
                     app:layout_constraintTop_toBottomOf="@+id/textView9"
                     app:srcCompat="@drawable/jerrycan" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tvRemainingPlants"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -335,7 +350,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tvRemainingFuel"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
@@ -354,14 +369,14 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView12"
+                    app:layout_constraintEnd_toStartOf="@+id/tvRemainingOxygen"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintStart_toEndOf="@+id/tvRemainingFuel"
                     app:layout_constraintTop_toBottomOf="@+id/textView9"
                     app:srcCompat="@drawable/o2" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tvRemainingOxygen"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:gravity="center"
