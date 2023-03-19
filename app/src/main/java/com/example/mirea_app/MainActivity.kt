@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         set(value) {
             if (value != field && value!! in minDays..maxDays) {
                 field = value
-                onDayUpdate(value.toByte())
+                binding.tvCurrentDayNumber.text = value.toString()
+                onDayUpdate(value.toByte(), true)
             }
         }
     var dataLoaded = false
@@ -66,6 +67,23 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnReset.setOnClickListener {
+            if (dataLoaded) {
+                spentFuel = 0
+                currentDay = 0
+                spentPlants = 0
+                remainingOxygen = 0
+                remainingFuel = 0
+                remainingPlants = 0
+                shipMass = 0
+                roomTemperature = 0
+                energyUnits = 0
+                engineThrottle = 0
+                dataLoaded = false
+                binding.tvRouteLength.text = "Маршрут не определён"
+            }
+        }
+
         binding.btnAdd.setOnClickListener { currentDay = min(currentDay?.plus(1) ?: maxDays, maxDays) }
         binding.btnSub.setOnClickListener { currentDay = max(currentDay?.minus(1) ?: minDays, minDays) }
 
@@ -93,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         spentPlants = (50..350).random()
         remainingPlants = (900..1000).random()
         remainingOxygen = (900..1000).random()
+        remainingFuel = (900..1000).random()
         shipMass = (10..150).random()
         roomTemperature = (26..30).random()
         energyUnits = (300..720).random()
