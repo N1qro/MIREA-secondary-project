@@ -2,10 +2,9 @@ package com.example.mirea_app.utils
 
 import android.content.Context
 import android.util.Log
-import com.android.volley.Request
-import com.android.volley.toolbox.HttpResponse
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.mirea_app.dataClasses.ListsForData
 import org.json.JSONObject
 
 class AppNetworkManager(private val context: Context) {
@@ -20,7 +19,7 @@ class AppNetworkManager(private val context: Context) {
             url,
             {response ->
                 Log.d("LogResponse", response.toString())
-                parseJsonWay(response)
+                ListsForData.ListOfCorsList = parseJsonWay(response)
             },
             {error ->
                 Log.e("LogResponse", error.toString())

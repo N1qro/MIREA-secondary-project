@@ -3,14 +3,11 @@ package com.example.mirea_app
 import android.app.Activity
 import android.icu.util.IslamicCalendar.CalculationType
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import com.example.mirea_app.dataClasses.ListsForData
 import com.example.mirea_app.databinding.ActivityMainBinding
 import com.example.mirea_app.utils.AppNetworkManager
 import kotlin.math.max
@@ -54,10 +51,12 @@ class MainActivity : AppCompatActivity() {
         set(value) {field = value; binding.tvEnergyAmount.text = this.getString(R.string.item_units, value.toString())}
     var engineThrottle = 0
         set(value) {field = value; binding.tvEngineThrottle.text = this.getString(R.string.percent_unit, engineThrottle.toString())}
+    private lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        handler = Handler(Looper.getMainLooper())
         val netWork = AppNetworkManager(applicationContext)
 
         binding.btnFetch.setOnClickListener {
@@ -65,6 +64,16 @@ class MainActivity : AppCompatActivity() {
                 fetchData()
                 dataLoaded = true
             }
+            netWork.gettingAFlightAssignment()
+            handler.post(object : Runnable {
+                override fun run() {
+                    if (ListsForData.ListOfCorsList.isNotEmpty()) {
+                        Log.d("Result", ListsForData.ListOfCorsList.toString())
+                        handler.removeCallbacksAndMessages(null)
+                    }
+                    handler.postDelayed(this, 200)
+                }
+            })
         }
 
         binding.btnReset.setOnClickListener {
