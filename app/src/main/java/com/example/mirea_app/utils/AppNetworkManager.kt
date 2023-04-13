@@ -9,7 +9,7 @@ import org.json.JSONObject
 
 class AppNetworkManager(private val context: Context) {
 
-    private val url = "https://dt.miet.ru/ppo_it_final"
+    private val url = "https://dt.miet.ru/ppo_it_final/judge"
 
     private val queue = Volley.newRequestQueue(context)
 

@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mirea_app.dataClasses.ListsForData
 import com.example.mirea_app.databinding.ActivityMainBinding
 import com.example.mirea_app.utils.AppNetworkManager
+import com.example.mirea_app.utils.MathUtil
 import kotlin.math.max
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var mathUtil = MathUtil()
     var currentDay: Int? = null
         set(value) {
             if (value != field && value!! in minDays..maxDays) {
@@ -102,9 +104,14 @@ class MainActivity : AppCompatActivity() {
     private fun onDayUpdate(newDay: Byte, randomValues: Boolean = false) {
         // Эта функция сработает при смене currentDay
 
+
         if (randomValues) {
             spentFuel = (100..999).random()
             spentPlants = (50..350).random()
+        } else {
+            spentFuel = 100
+            spentPlants = mathUtil.searchPointSH(currentDay!!.toInt())
+
         }
     }
 

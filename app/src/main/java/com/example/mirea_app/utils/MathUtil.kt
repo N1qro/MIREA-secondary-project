@@ -34,6 +34,12 @@ class MathUtil {
         return distance
     }
 
+
+    fun searchPointSH(index: Int): Int {
+        val list = ListsForData.ListOfCorsList
+        return list[0][index][0]
+    }
+
     fun countAllSH(): Int {
         var sh = 0
         val list = ListsForData.ListOfCorsList
